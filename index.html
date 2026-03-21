@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>V4NTY CHAT — Правила сообщества | Telegram стиль</title>
+    <!-- Font Awesome 6 (free icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Telegram Dark Theme Base (Desktop / WebZ) */
+        :root {
+            --tg-bg: #0a0f14;
+            --tg-surface: #17212b;
+            --tg-card: #1f2a36;
+            --tg-elevated: #242f3d;
+            --tg-accent: #2b9aff;
+            --tg-accent-hover: #4aabff;
+            --tg-danger: #e1534f;
+            --tg-warning: #f5a623;
+            --tg-text-primary: #eef2f5;
+            --tg-text-secondary: #a9b7c6;
+            --tg-border: #2c3a48;
+            --tg-muted: #6f7c8a;
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.2);
+            --shadow-md: 0 8px 20px rgba(0, 0, 0, 0.3);
+            --radius-lg: 24px;
+            --radius-md: 16px;
+            --radius-sm: 12px;
+        }
+
+        body {
+            background-color: var(--tg-bg);
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', 'Roboto', Helvetica, sans-serif;
+            color: var(--tg-text-primary);
+            line-height: 1.5;
+            scroll-behavior: smooth;
+            padding: 2rem 1rem;
+        }
+
+        /* custom scrollbar (Telegram-like) */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--tg-surface);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #3e4c5c;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--tg-accent);
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* header section */
+        .hero {
+            background: linear-gradient(135deg, var(--tg-surface) 0%, #10181f 100%);
+            border-radius: var(--radius-lg);
+            padding: 2rem 2rem 1.8rem;
+            margin-bottom: 2rem;
+            border: 1px solid var(--tg-border);
+            box-shadow: var(--shadow-sm);
+            backdrop-filter: blur(2px);
+            transition: all 0.2s ease;
+        }
+
+        .hero-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .brand {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .brand h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            background: linear-gradient(120deg, #ffffff, var(--tg-accent));
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+        }
+        .badge {
+            background: var(--tg-accent);
+            padding: 4px 12px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #0a0f14;
+        }
+        .action-buttons {
+            display: flex;
+            gap: 14px;
+        }
+        .tg-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--tg-card);
+            padding: 10px 20px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--tg-text-primary);
+            text-decoration: none;
+            transition: all 0.2s;
+            border: 1px solid var(--tg-border);
+            backdrop-filter: blur(4px);
+        }
+        .tg-btn i {
+            font-size: 1.1rem;
+        }
+        .tg-btn:hover {
+            background: var(--tg-accent);
+            color: #fff;
+            border-color: var(--tg-accent);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 14px rgba(43, 154, 255, 0.25);
+        }
+        .hero-desc {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+            gap: 1rem;
+            border-top: 1px solid var(--tg-border);
+            padding-top: 1rem;
+        }
+        .hero-desc p {
+            color: var(--tg-text-secondary);
+            font-size: 0.95rem;
+        }
+        .update-info {
+            font-size: 0.85rem;
+            background: rgba(43, 154, 255, 0.1);
+            padding: 5px 12px;
+            border-radius: 30px;
+        }
+
+        /* rule cards */
+        .rules-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .rule-card {
+            background: var(--tg-card);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--tg-border);
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: var(--shadow-sm);
+        }
+        .rule-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--tg-accent);
+        }
+        .card-header {
+            background: var(--tg-elevated);
+            padding: 1.2rem 1.8rem;
+            border-bottom: 1px solid var(--tg-border);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .card-header h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+        }
+        .card-header i {
+            font-size: 1.8rem;
+            color: var(--tg-accent);
+        }
+        .card-body {
+            padding: 1.6rem 1.8rem;
+        }
+
+        .rule-item {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .rule-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        .rule-title {
+            font-weight: 700;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+            color: var(--tg-accent);
+        }
+        .rule-desc {
+            color: var(--tg-text-secondary);
+            margin-bottom: 12px;
+            line-height: 1.45;
+            padding-left: 1.2rem;
+        }
+        .punishment-badge {
+            display: inline-flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 8px;
+        }
+        .badge-punish {
+            background: rgba(225, 83, 79, 0.15);
+            border-left: 3px solid var(--tg-danger);
+            padding: 5px 12px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #ffb4b2;
+        }
+        .badge-warn {
+            background: rgba(245, 166, 35, 0.15);
+            border-left-color: var(--tg-warning);
+            color: #ffda8a;
+        }
+        .badge-mute {
+            background: rgba(43, 154, 255, 0.15);
+            border-left-color: var(--tg-accent);
+            color: #b3dbff;
+        }
+        .badge-ban {
+            background: rgba(225, 83, 79, 0.3);
+            border-left-color: #ff5e5a;
+            color: #ffb4b1;
+            font-weight: bold;
+        }
+        .inline-code {
+            background: #0e141c;
+            padding: 2px 8px;
+            border-radius: 20px;
+            font-family: monospace;
+            font-size: 0.85rem;
+            color: #a1d6ff;
+        }
+
+        /* punishment scale grid */
+        .scale-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin: 1.2rem 0 1rem;
+        }
+        .scale-card {
+            background: var(--tg-elevated);
+            border-radius: var(--radius-sm);
+            padding: 1rem;
+            text-align: center;
+            transition: all 0.2s;
+            border: 1px solid var(--tg-border);
+        }
+        .scale-card i {
+            font-size: 2rem;
+            margin-bottom: 8px;
+            display: inline-block;
+        }
+        .scale-card strong {
+            font-size: 1.3rem;
+            display: block;
+            margin-bottom: 6px;
+        }
+        .scale-detail {
+            font-size: 0.8rem;
+            color: var(--tg-text-secondary);
+        }
+        .note-text {
+            background: rgba(43, 154, 255, 0.08);
+            padding: 12px 16px;
+            border-radius: var(--radius-sm);
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            border-left: 3px solid var(--tg-accent);
+        }
+
+        .footer-note {
+            margin-top: 2.5rem;
+            background: var(--tg-surface);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            text-align: center;
+            border: 1px solid var(--tg-border);
+        }
+        .admin-contact {
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+        .admin-contact i {
+            color: var(--tg-accent);
+        }
+        .footer-text {
+            font-size: 0.8rem;
+            color: var(--tg-muted);
+        }
+
+        @media (max-width: 700px) {
+            body {
+                padding: 1rem;
+            }
+            .card-header, .card-body {
+                padding: 1rem;
+            }
+            .hero {
+                padding: 1.2rem;
+            }
+            .brand h1 {
+                font-size: 1.6rem;
+            }
+            .tg-btn {
+                padding: 6px 14px;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* additional animations and microinteractions */
+        @keyframes subtleGlow {
+            0% { box-shadow: 0 0 0 0 rgba(43, 154, 255, 0.2);}
+            100% { box-shadow: 0 0 0 6px rgba(43, 154, 255, 0);}
+        }
+        .tg-btn:active {
+            transform: scale(0.97);
+        }
+        .rule-card {
+            animation: fadeSlideUp 0.35s ease-out;
+        }
+        @keyframes fadeSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .rule-card:nth-child(1) { animation-delay: 0.02s; }
+        .rule-card:nth-child(2) { animation-delay: 0.05s; }
+        .rule-card:nth-child(3) { animation-delay: 0.08s; }
+        .rule-card:nth-child(4) { animation-delay: 0.11s; }
+        .rule-card:nth-child(5) { animation-delay: 0.14s; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- Hero / header в Telegram стиле -->
+    <div class="hero">
+        <div class="hero-top">
+            <div class="brand">
+                <h1>V4NTY CHAT</h1>
+                <span class="badge"><i class="fas fa-shield-alt"></i> OFFICIAL RULES</span>
+            </div>
+            <div class="action-buttons">
+                <a href="https://t.me/v4ntychannel" target="_blank" rel="noopener noreferrer" class="tg-btn">
+                    <i class="fab fa-telegram"></i> <span>📢 Канал</span>
+                </a>
+                <a href="https://t.me/+xe3PNbAOREgxMGZi" target="_blank" rel="noopener noreferrer" class="tg-btn">
+                    <i class="fab fa-telegram-plane"></i> <span>💬 Чат</span>
+                </a>
+            </div>
+        </div>
+        <div class="hero-desc">
+            <p><i class="fas fa-users"></i> Сообщество V4NTY — безопасное пространство. <strong>Администрация всегда права</strong> (п.1.1).<br> Нарушения фиксируются вручную или ботом. Будьте взаимовежливы.</p>
+            <div class="update-info"><i class="far fa-calendar-alt"></i> Обновлено: 19 марта 2026</div>
+        </div>
+    </div>
+
+    <div class="rules-grid">
+        <!-- 1. Общие положения -->
+        <div class="rule-card">
+            <div class="card-header">
+                <i class="fas fa-gavel"></i>
+                <h2>1. Общие положения</h2>
+            </div>
+            <div class="card-body">
+                <div class="rule-item">
+                    <div class="rule-title"><i class="fas fa-check-circle" style="font-size: 1.1rem;"></i> 1.1 Администрация всегда права</div>
+                    <div class="rule-desc">Решение администратора является окончательным и обсуждается в личных сообщениях, но не в чате.</div>
+                </div>
+                <div class="rule-item">
+                    <div class="rule-title"><i class="fas fa-check-circle"></i> 1.2 Согласие с правилами</div>
+                    <div class="rule-desc">Заходя в чат, вы автоматически соглашаетесь со всеми пунктами правил.</div>
+                </div>
+                <div class="rule-item">
+                    <div class="rule-title"><i class="fas fa-check-circle"></i> 1.3 Незнание не освобождает</div>
+                    <div class="rule-desc">Незнание правил не освобождает от ответственности.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Запрещено: токсичность и флуд -->
+        <div class="rule-card">
+            <div class="card-header">
+                <i class="fas fa-ban"></i>
+                <h2>2. Запрещено: токсичность и флуд</h2>
+            </div>
+            <div class="card-body">
+                <div class="rule-item">
+                    <div class="rule-title"><i class="fas fa-comment-slash"></i> 2.1 Оскорбления</div>
+                    <div class="rule-desc">Прямые оскорбления участников, унижение по половому, национальному или религиозному признаку.</div>
+                    <div class="punishment-badge">
+                        <span class="badge-punish"><i class="fas fa-exclamation-triangle"></i> Наказание: Варн</span>
+                        <span class="badge-punish">Повторно — мут 4ч</span>
+                        <span class="badge-ban">Систематически — бан</span>
+                    </div>
+                </div>
+                <div class="rule-item">
+                    <div class="rule-title"><i class="fas fa-comment-dots"></i> 2.2 Флуд и Спам</div>
+                    <div class="rule-desc">Повторяющиеся сообщения, капс, бессмысленный набор символов.</div>
+                    <div class="punishment-badge">
+                        <span class="badge-warn">Варн → мут 2ч</span>
+                    </div>
+                </div>
+                <div class="rule-item">
+                    <div class="rule-title"><i class="fas fa-fire"></i> 2.3 Провокации и Холивары</div>
+                    <div class="rule-desc">Умышленный троллинг, разжигание конфликтов, переход на личности.</div>
+                    <div class="punishment-badge">
+                        <span class="badge-mute">⚡ Мут 3ч (без предупреждения)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. Контент и реклама -->
+        <div class="rule-card">
+            <div class="card-header">
+                <i class="fas fa-image"></i>
+                <h2>3. Контент и реклама</h2>
+            </div>
+            <div class="card-body">
+                <div class="rule-item">
+                    <div class="rule-title"><i class="fas fa-skull"></i> 3.1 Медиа-контент 18+ / насилие</div>
+                    <div class="rule-desc">Видео/фото 18+, сцены насилия, шок-контент.</div>
+                    <div class="punishment-badge">
+                        <span class="badge-ban"><i class="fas fa-bolt"></i> ⚡ Мгновенный вечный бан</span>
+                    </div>
+                </div>
+                <div class="rule-item">
+                    <div class="rule-title"><i class="fas fa-ad"></i> 3.2 Реклама</div>
+                    <div class="rule-desc">Любые ссылки на сторонние ресурсы, реферальные ссылки, спам в ЛС.</div>
+                    <div class="punishment-badge">
+                        <span class="badge-ban"><i class="fas fa-ban"></i> ⚡ Мгновенный вечный бан + репорт</span>
+                    </div>
+                </div>
+                <div class="rule-item">
+                    <div class="rule-title"><i class="fas fa-church"></i> 3.3 Политика и Религия</div>
+                    <div class="rule-desc">Обсуждение тем, не относящихся к тематике чата (если иное не указано).</div>
+                    <div class="punishment-badge">
+                        <span class="badge-warn">Варн и очистка</span>
+                        <span class="badge-mute">При продолжении — мут 6ч</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. Технические моменты -->
+        <div class="rule-card">
+            <div class="card-header">
+                <i class="fas fa-microchip"></i>
+                <h2>4. Технические моменты</h2>
+            </div>
+            <div class="card-body">
+                <div class="rule-item">
+                    <div class="rule-title"><i class="fas fa-at"></i> 4.1 Тэги и упоминания</div>
+                    <div class="rule-desc"><span class="inline-code">@all</span>, <span class="inline-code">@channel</span> только для объявлений от админов.</div>
+                    <div class="punishment-badge"><span class="badge-mute">Мут 1ч</span></div>
+                </div>
+                <div class="rule-item">
+                    <div class="rule-title"><i class="fas fa-user-circle"></i> 4.2 Имя и аватар</div>
+                    <div class="rule-desc">Оскорбительные/рекламные/политические ники и фото.</div>
+                    <div class="punishment-badge">
+                        <span class="badge-warn">Предупреждение, 15 мин на смену. Игнор → бан</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. Шкала наказаний + детальная таблица -->
+        <div class="rule-card">
+            <div class="card-header">
+                <i class="fas fa-weight-hanging"></i>
+                <h2>5. Шкала наказаний</h2>
+            </div>
+            <div class="card-body">
+                <div class="scale-grid">
+                    <div class="scale-card"><i class="fas fa-exclamation-triangle" style="color: #f5a623;"></i><strong>⚠️ Варн</strong><div class="scale-detail">Предупреждение. <br>3 варна = автомут 🔇</div></div>
+                    <div class="scale-card"><i class="fas fa-microphone-slash" style="color: #2b9aff;"></i><strong>🔇 Мут</strong><div class="scale-detail">Лёгкий: 1–4ч<br>Средний: 6–12ч<br>Тяжёлый: 24ч</div></div>
+                    <div class="scale-card"><i class="fas fa-door-closed" style="color: #e1534f;"></i><strong>🚫 Бан</strong><div class="scale-detail">Временный (1–7д) или вечный</div></div>
+                    <div class="scale-card"><i class="fas fa-boot" style="color: #7f8c8d;"></i><strong>👢 Кик</strong><div class="scale-detail">Удаление из чата (можно вернуться)</div></div>
+                </div>
+                <div class="note-text">
+                    <i class="fas fa-info-circle"></i> <strong>Детали:</strong> Временный бан (1–7 дней) — за грубость после мута. <br>
+                    Вечный бан — реклама, 18+, боты. <br>
+                    Кик — для «остыть» или случайный вход.
+                </div>
+                <div style="margin-top: 1rem; font-size: 0.85rem; background: #10171f; padding: 10px 14px; border-radius: 14px;">
+                    <i class="fas fa-robot"></i> Нарушения фиксируются вручную или ботом. Будьте взаимовежливы. Администрация всегда на связи ✵
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Дополнительный блок: Цитата о связи и напоминание -->
+    <div class="footer-note">
+        <div class="admin-contact">
+            <i class="fas fa-headset"></i> ✵ Администрация всегда на связи ✵
+        </div>
+        <div class="footer-text">
+            <i class="fab fa-telegram"></i> Наш чат: <a href="https://t.me/+xe3PNbAOREgxMGZi" target="_blank" style="color: var(--tg-accent); text-decoration: none;">t.me/+xe3PNbAOREgxMGZi</a> &nbsp;|&nbsp;
+            Канал: <a href="https://t.me/v4ntychannel" target="_blank" style="color: var(--tg-accent); text-decoration: none;">@v4ntychannel</a><br>
+            <span style="font-size: 0.75rem;">Заходя в чат, вы принимаете все правила сообщества. Уважайте друг друга.</span>
+        </div>
+    </div>
+
+    <!-- Декоративный элемент (Telegram inspired) -->
+    <div style="text-align: center; margin-top: 2rem; opacity: 0.5; font-size: 12px; color: var(--tg-muted);">
+        <i class="fas fa-shield-hog"></i> V4NTY CHAT · создано для комфортного общения · версия правил 2.3
+    </div>
+</div>
+
+<script>
+    // Небольшой интерактив: плавный скролл к ссылкам и динамическое приветствие (соответствует Telegram vibe)
+    (function() {
+        // Просто добавляем динамическую подсветку навигации / консольное сообщение
+        console.log("V4NTY CHAT | Правила загружены — следуй кодексу сообщества");
+        // микро-анимация для кнопок при наведении уже в CSS, дополнительно эффект ripple?
+        const buttons = document.querySelectorAll('.tg-btn');
+        buttons.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                // лёгкая анимация клика (чисто визуально)
+                btn.style.transform = 'scale(0.96)';
+                setTimeout(() => { btn.style.transform = ''; }, 120);
+            });
+        });
+        // Отображение даты обновления в консоль (как напоминание)
+        const updateSpan = document.querySelector('.update-info');
+        if(updateSpan) {
+            // дополнительно устанавливаем tooltip
+            updateSpan.setAttribute('title', 'Актуальная редакция от 19 марта 2026');
+        }
+        // Можно добавить плавный переход для ссылок на телеграм — безопасное открытие
+        const allTelegramLinks = document.querySelectorAll('a[href*="t.me"]');
+        allTelegramLinks.forEach(link => {
+            link.setAttribute('rel', 'noopener noreferrer');
+            link.setAttribute('target', '_blank');
+        });
+    })();
+</script>
+</body>
+  </html>
